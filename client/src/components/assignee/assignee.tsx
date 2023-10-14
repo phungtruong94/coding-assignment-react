@@ -1,5 +1,3 @@
-import { Routes, Route } from 'react-router-dom';
-
 import styles from './assignee.module.css';
 import { useEffect, useState } from 'react';
 import { User } from '@acme/shared-models';
