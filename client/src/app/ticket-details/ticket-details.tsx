@@ -15,6 +15,8 @@ export function TicketDetails() {
   const [ticket, setTicket] = useState<Ticket>();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [assignPending, setAssignPending] = useState(false);
+  const [statusPending, setStatusPending] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -85,6 +87,7 @@ export function TicketDetails() {
 
   const handleChangeAssignee = async (value: number) => {
     if (!value) return;
+    setAssignPending(true);
     try {
       const resp = await ticketServices.assignUser({
         titketId: Number(id),
@@ -99,9 +102,12 @@ export function TicketDetails() {
     } catch (error) {
       message.error("Unknown Error");
       console.log(error)
+    } finally {
+      setAssignPending(false);
     }
   }
   const handleUnAssign = async () => {
+    setAssignPending(true);
     try {
       const resp = await ticketServices.unassign(Number(id));
       if (!resp.error) {
@@ -113,6 +119,8 @@ export function TicketDetails() {
     } catch (error) {
       message.error("Unknown Error");
       console.log(error)
+    } finally {
+      setAssignPending(false);
     }
   }
 
@@ -121,6 +129,7 @@ export function TicketDetails() {
     if (!value) {
       service = ticketServices.markAsIncomplete
     }
+    setStatusPending(true);
     try {
       const resp = await service(Number(id));
       if (!resp.error) {
@@ -131,7 +140,9 @@ export function TicketDetails() {
       }
     } catch (error) {
       message.error("Unknown Error");
-      console.log(error)
+      console.log(error);
+    } finally {
+      setStatusPending(false);
     }
   }
 
@@ -168,6 +179,7 @@ export function TicketDetails() {
                     <Switch
                       checked={ticket.completed}
                       onChange={changeTicketStatus}
+                      disabled={statusPending}
                     />
                   </div>
                   <div>
@@ -180,6 +192,7 @@ export function TicketDetails() {
                       onClear={handleUnAssign}
                       allowClear
                       data-testid="select-testid"
+                      disabled={assignPending}
                     />
                   </div>
                   <div className={styles['back']}>
