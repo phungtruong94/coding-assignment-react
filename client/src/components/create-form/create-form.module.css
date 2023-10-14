@@ -1,0 +1,15 @@
+.form {
+  min-height: 70px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 40px;
+}
+.form .input {
+  width: 66.67%;
+  margin-inline-end: 0;
+}
+.form .button {
+  width: 80px;
+  margin-inline-end: 0;
+  margin-left: 8px;
+}

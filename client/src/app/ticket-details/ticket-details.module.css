@@ -1,0 +1,44 @@
+/*
+ * Replace this with your own classes
+ *
+ * e.g.
+ * .container {
+ * }
+*/
+.header {
+  padding-top: 24px;
+  text-align: center;
+  font-size: 1.125rem;
+}
+.loading {
+  text-align: center;
+}
+.details {
+  margin-top: 24px;
+  padding-bottom: 24px;
+  min-height: 200px;
+}
+.content {
+  font-size: 16px;
+  text-align: center;
+}
+.content > div {
+  margin-bottom: 12px;
+}
+.content > div > span {
+  font-weight: bold;
+}
+.select {
+  width: 200px;
+  margin-left: 8px;
+}
+.back {
+  display: flex;
+  justify-content: center;
+}
+.link {
+  margin-top: 48px;
+  padding: 10px 24px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
